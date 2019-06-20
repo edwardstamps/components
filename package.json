@@ -1,6 +1,6 @@
 {
   "name": "dd-test-rn-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/edwardstamps/rn-components.git"
+    "url": "git://github.com/edwardstamps/components.git"
   },
   "keywords": [
     "react",
@@ -33,7 +33,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/edwardstamps/rn-components/issues"
+    "url": "https://github.com/edwardstamps/components/issues"
   },
-  "homepage": "https://github.com/edwardstamps/rn-components#readme"
+  "homepage": "https://github.com/edwardstamps/components#readme"
 }

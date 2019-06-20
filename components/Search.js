@@ -30,88 +30,77 @@
  * limitations under the License.
  */
 
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import ReactNative, { Text, View, TouchableOpacity, TextInput, Platform } from 'react-native'
 
-export default class Search extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      color: 'white',
-      borderColor: '#EFEFEF',
-      search: '',
-    }
+const Search = ({ showHeader, showSearch, updateList, header }) => {
+  const [search, setSearch] = useState('')
+  const localHeader = header || 'Select'
+  const newStyle = {
+    flex: 1,
+    fontSize: 18,
+    color: '#364247',
+    textAlignVertical: 'top',
+    maxHeight: 100,
+    height: Math.max(35, 0),
+    paddingTop: 0,
   }
-
-  render() {
-    const header = this.props.header || 'Select'
-    const newStyle = {
-      flex: 1,
-      fontSize: 18,
-      color: '#364247',
-      textAlignVertical: 'top',
-      maxHeight: 100,
-      height: Math.max(35, 0),
-      paddingTop: 0,
-    }
-    const androidStyle = {
-      paddingLeft: 0,
-      marginTop: 5,
-    }
-    const iosStyle = {
-      marginTop: 4,
-      marginBottom: 10,
-    }
-    if (this.props.showSearch) {
-      return (
-        <View style={s.headerContainer}>
-          <Text style={s.modHeader}>{header}</Text>
-          <View style={s.outerBox}>
-            <View style={s.innerBox}>
-              {this.state.search.length ? (
-                <View style={s.space} />
-              ) : (
-                <TouchableOpacity style={s.circleBoxMargin}>
-                  <Text style={s.whiteText}>?</Text>
-                </TouchableOpacity>
-              )}
-              <TextInput
-                style={Platform.select({
-                  ios: [newStyle, iosStyle],
-                  android: [newStyle, androidStyle],
-                })}
-                placeholder="Search"
-                value={this.state.search}
-                onChangeText={search => {
-                  this.setState({ search })
-                  this.props.updateList(search)
-                }}
-                maxLength={25}
-                placeholderTextColor="#9B9B9B"
-              />
-              {this.state.search ? (
-                <TouchableOpacity
-                  style={s.circleBoxMargin}
-                  onPress={() => this.setState({ search: '' })}
-                >
-                  <Text style={s.whiteText}>X</Text>
-                </TouchableOpacity>
-              ) : null}
-            </View>
-          </View>
-        </View>
-      )
-    }
-
+  const androidStyle = {
+    paddingLeft: 0,
+    marginTop: 5,
+  }
+  const iosStyle = {
+    marginTop: 4,
+    marginBottom: 10,
+  }
+  if (showSearch) {
     return (
-      <View>
-        <View style={s.headerContainer}>
-          <Text style={s.modHeader}>{header}</Text>
+      <View style={s.headerContainer}>
+        {showHeader && <Text style={s.modHeader}>{localHeader}</Text>}
+        <View style={s.outerBox}>
+          <View style={s.innerBox}>
+            {search ? (
+              <View style={s.space} />
+            ) : (
+              <TouchableOpacity style={s.circleBoxMargin}>
+                <Text style={s.whiteText}>?</Text>
+              </TouchableOpacity>
+            )}
+            <TextInput
+              style={Platform.select({
+                ios: [newStyle, iosStyle],
+                android: [newStyle, androidStyle],
+              })}
+              placeholder="Search"
+              value={search}
+              onChangeText={input => {
+                setSearch(input)
+                updateList(input)
+              }}
+              maxLength={25}
+              placeholderTextColor="#9B9B9B"
+            />
+            {search ? (
+              <TouchableOpacity style={s.circleBoxMargin} onPress={() => setSearch('')}>
+                <Text style={s.whiteText}>X</Text>
+              </TouchableOpacity>
+            ) : null}
+          </View>
         </View>
       </View>
     )
   }
+
+  return (
+    <View>
+      <View style={s.headerContainer}>
+        <Text style={s.modHeader}>{header}</Text>
+      </View>
+    </View>
+  )
 }
+
+export default Search
 
 const s = ReactNative.StyleSheet.create({
   headerContainer: {
