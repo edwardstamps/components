@@ -14,5 +14,7 @@
  * limitations under the License.
  */
 
-export { default as Search } from './Search'
-export { default as List } from './List'
+import Search from './Search'
+import List from './List'
+
+export { Search, List }
