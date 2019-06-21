@@ -33,7 +33,15 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Text, View, FlatList } from 'react-native'
 
-const List = ({ selectCell, list, primaryColor, selectedCell, includeFooter }) => {
+const List = ({
+  selectCell,
+  list,
+  primaryColor,
+  selectedCell,
+  includeFooter,
+  fieldName,
+  showRadio,
+}) => {
   return (
     <FlatList
       style={s.listStyle}
@@ -45,11 +53,13 @@ const List = ({ selectCell, list, primaryColor, selectedCell, includeFooter }) =
           style={item.isComplete ? s.listContainerGray : s.listContainer}
           disabled={item.isComplete}
         >
-          <View style={item.isComplete ? s.leftContainerGray : s.leftContainer}>
-            <SurveyRadio selected={selectedCell.key === item.key} primaryColor={primaryColor} />
-          </View>
+          {showRadio && (
+            <View style={item.isComplete ? s.leftContainerGray : s.leftContainer}>
+              <SurveyRadio selected={selectedCell.key === item.key} primaryColor={primaryColor} />
+            </View>
+          )}
           <View style={s.rightContainer}>
-            <Text style={s.cellText}>{item.name}</Text>
+            <Text style={s.cellText}>{item[fieldName || 'name']}</Text>
           </View>
         </TouchableOpacity>
       )}
