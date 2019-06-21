@@ -39,7 +39,7 @@ const CustomTextInput = ({
   placeholder,
   isError,
   importedBorderColor,
-  showIcon,
+  icon,
   max,
 }) => {
   const [inputHeight, setInputHeight] = useState(0)
@@ -54,7 +54,7 @@ const CustomTextInput = ({
     height: Math.max(35, inputHeight),
     paddingTop: 0,
     alignSelf: 'center',
-    marginLeft: showIcon ? 0 : 15,
+    marginLeft: icon ? 0 : 15,
   }
   const androidStyle = {
     paddingLeft: 0,
@@ -69,9 +69,9 @@ const CustomTextInput = ({
 
   return (
     <View style={[s.modal, borderStyle]}>
-      {showIcon && (
+      {icon && (
         <TouchableOpacity style={s.circleBox}>
-          <Text style={s.whiteText}>?</Text>
+          <Text style={s.whiteText}>{icon}</Text>
         </TouchableOpacity>
       )}
       <TextInput
