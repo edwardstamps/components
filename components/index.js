@@ -16,5 +16,6 @@
 
 import Search from './Search'
 import List from './List'
+import CustomTextInput from "./CustomTextInput"
 
-export { Search, List }
+export { Search, List, CustomTextInput }
