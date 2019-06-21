@@ -17,5 +17,6 @@
 import Search from './Search'
 import List from './List'
 import CustomTextInput from "./CustomTextInput"
+import CustomButton from "./CustomButton"
 
 export { Search, List, CustomTextInput }
